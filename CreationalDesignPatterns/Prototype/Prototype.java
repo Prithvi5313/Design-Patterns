@@ -48,7 +48,7 @@ class NetworkConnection implements Cloneable {
         }
     }
 }
-public class Prototype {
+public class  Prototype {
 
     public static void main(String[] args) throws InterruptedException {
 
