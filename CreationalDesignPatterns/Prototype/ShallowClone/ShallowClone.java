@@ -1,21 +1,25 @@
-package DesignPatterns.CreationalDesignPatterns.Prototype;
+package DesignPatterns.CreationalDesignPatterns.Prototype.ShallowClone;
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 class NetworkConnection implements Cloneable {
 
     private String ip;
     private String importantData;
-
+    private List<String> links = new ArrayList<>();
     public NetworkConnection() {
         this.ip = "192.168.1.1";
     }
 
     public void loadImportantData() throws InterruptedException {
 
+        links.add("www.abc.com");
+        links.add("www.xyz.com");
         System.out.println("Loading important data...");
         Thread.sleep(3000);
-
         importantData = "Very Important Network Data";
-
         System.out.println("Data loaded successfully.");
     }
 
@@ -31,11 +35,24 @@ class NetworkConnection implements Cloneable {
         return importantData;
     }
 
+    public void setImportantData(String importantData) {
+        this.importantData = importantData;
+    }
+
+    public List<String> getLinks() {
+        return links;
+    }
+
+    public void setLinks(List<String> links) {
+        this.links = links;
+    }
+
     @Override
     public String toString() {
         return "NetworkConnection{" +
                 "ip='" + ip + '\'' +
                 ", importantData='" + importantData + '\'' +
+                ", links=" + links +
                 '}';
     }
 
@@ -50,14 +67,12 @@ class NetworkConnection implements Cloneable {
         }
     }
 }
-public class Prototype {
+public class  ShallowClone {
 
     public static void main(String[] args) throws InterruptedException {
 
         // Create original object
-        NetworkConnection original = new NetworkConnection();
-
-        original.setIp("192.168.1.10");
+       NetworkConnection original = new NetworkConnection();
 
         // Expensive operation
         original.loadImportantData();
@@ -78,5 +93,18 @@ public class Prototype {
 
         System.out.println("\nClone 2:");
         System.out.println(clone2);
+
+       // Removing one value
+        original.getLinks().remove(0);
+        System.out.println("Original:");
+        System.out.println(original);
+
+
+        System.out.println("\nClone 1:");
+        System.out.println(clone1);
+        System.out.println("\nClone 2:");
+        System.out.println(clone2);
+
+
     }
 }
