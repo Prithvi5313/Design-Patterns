@@ -1,7 +1,8 @@
 package DesignPatterns.CreationalDesignPatterns.Builder;
 
  class User {
-    private String userName;
+
+     private String userName;
     private String email;
     private String userId;
     private User(UserBuilder builder){
